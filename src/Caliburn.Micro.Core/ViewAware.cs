@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+#if REACTIVEUI
+using ReactiveUI;
+#endif
 
 namespace Caliburn.Micro
 {
@@ -7,8 +10,15 @@ namespace Caliburn.Micro
     /// A base implementation of <see cref = "IViewAware" /> which is capable of caching views by context.
     /// </summary>
     public class ViewAware : PropertyChangedBase, IViewAware
+#if REACTIVEUI
+        , IActivatableViewModel
+#endif
     {
         private readonly IDictionary<object, object> views;
+
+#if REACTIVEUI        
+        public ViewModelActivator Activator { get; }
+#endif
 
         /// <summary>
         /// The default view context.
@@ -29,6 +39,9 @@ namespace Caliburn.Micro
         public ViewAware()
         {
             views = new WeakValueDictionary<object, object>();
+#if REACTIVEUI
+            Activator = new ViewModelActivator();
+#endif
         }
 
         /// <summary>

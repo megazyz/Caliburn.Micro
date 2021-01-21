@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;netcoreapp3.1;net5.0</TargetFrameworks>
+    <PackageId>Caliburn.Micro</PackageId>
+    <Product>Caliburn.Micro</Product>
+    <RootNamespace>Caliburn.Micro</RootNamespace>
+    <AssemblyOriginatorKeyFile>.\..\Caliburn.Micro.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <DefineConstants>AVALONIA;REACTIVEUI</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="0.10.0-rc1" />
+    <PackageReference Include="Avalonia.Markup.Xaml.Loader" Version="0.10.0-rc1" />
+    <PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.10.0-rc1" />
+    <ProjectReference Include="..\Caliburn.Micro.CoreRx\Caliburn.Micro.CoreRx.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Caliburn.Micro.Platform\*.cs" />
+    <Compile Include="..\Caliburn.Micro.Avalonia\Platforms*\netcore-avalonia*\*.cs" />
+  </ItemGroup>
+
+
+</Project>

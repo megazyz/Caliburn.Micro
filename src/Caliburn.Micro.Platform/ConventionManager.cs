@@ -80,7 +80,11 @@
             "</DataTemplate>"
 #elif AVALONIA
             "<DataTemplate xmlns=\"https://github.com/avaloniaui\" " +
+#if REACTIVEUI
+            "xmlns:cal='clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.AvaloniaRx'> " +
+#else
             "xmlns:cal='clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Avalonia'> " +
+#endif
             "<ContentControl cal:View.Model=\"{Binding}\" VerticalContentAlignment=\"Stretch\" HorizontalContentAlignment=\"Stretch\" KeyboardNavigation.IsTabStop=\"False\" />" +
             "</DataTemplate>"
 #else

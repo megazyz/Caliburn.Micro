@@ -3,12 +3,39 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
+#if REACTIVEUI
+using ReactiveUI;
+#endif
 
 namespace Caliburn.Micro
 {
     /// <summary>
     /// A base class that implements the infrastructure for property change notification and automatically performs UI thread marshalling.
     /// </summary>
+#if REACTIVEUI
+    public class PropertyChangedBase : ReactiveObject, INotifyPropertyChangedEx
+    {
+        public virtual bool IsNotifying
+        {
+            get { return AreChangeNotificationsEnabled(); }
+            set { throw new NotSupportedException(); }
+        }
+
+        /// <summary>
+        /// Notifies subscribers of the property change.
+        /// </summary>
+        /// <param name = "propertyName">Name of the property.</param>
+        public virtual void NotifyOfPropertyChange([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        {
+            this.RaisePropertyChanged(propertyName);
+        }
+
+        public virtual void Refresh()
+        {
+            NotifyOfPropertyChange(string.Empty);
+        }
+    }
+#else
     [DataContract]
     public class PropertyChangedBase : INotifyPropertyChangedEx
     {
@@ -107,4 +134,5 @@ namespace Caliburn.Micro
             return true;
         }
     }
+#endif
 }

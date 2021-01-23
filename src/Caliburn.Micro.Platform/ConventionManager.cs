@@ -85,7 +85,7 @@
 #else
             "xmlns:cal='clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Avalonia'> " +
 #endif
-            "<ContentControl cal:View.Model=\"{Binding}\" VerticalContentAlignment=\"Stretch\" HorizontalContentAlignment=\"Stretch\" KeyboardNavigation.IsTabStop=\"False\" />" +
+            "<ContentPresenter cal:View.Model=\"{Binding}\" VerticalContentAlignment=\"Stretch\" HorizontalContentAlignment=\"Stretch\" />" +
             "</DataTemplate>"
 #else
              "<DataTemplate xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation' " +
